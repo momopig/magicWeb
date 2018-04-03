@@ -35,7 +35,7 @@ module.exports = merge(webpackBaseConfig, {
             title: 'iView admin v' + package.version,
             filename: '../index.html',
             template: '../index.html',
-            inject: false
+            inject: true
         }),
         new CopyWebpackPlugin([
             {
@@ -49,9 +49,5 @@ module.exports = merge(webpackBaseConfig, {
                 'text-editor.vue'
             ]
         })
-    ],
-    devServer: {
-        port: '8081',
-        open: 'Google Chrome'
-    }
+    ]
 });
