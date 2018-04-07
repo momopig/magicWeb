@@ -24,7 +24,12 @@ let getTemplateList = function (query, successConfig, failConfig) {
     get(url, successConfig, failConfig)
 }
 
+let getTemplate = function (id, successConfig, failConfig) {
+    let url = makeUrlString('/mock/api/magic/template/get/id', {id: id})
+    get(url, successConfig, failConfig)
+}
 export default {
-    getTemplateList
+    getTemplateList,
+    getTemplate
 }
   

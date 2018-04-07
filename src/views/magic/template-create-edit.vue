@@ -66,6 +66,7 @@
 <script>
 import tinymce from 'tinymce'
 import draggable from 'vuedraggable'
+import MagicService from '@/utils/fetchService/magic.js' 
 
 export default {
     name: 'template-create-edit',
@@ -167,30 +168,6 @@ export default {
             this.saveType = 'create'
         },
 
-        /*
-        *@desc 模拟获取模版的接口
-        *@param templateId { String } 模版id
-        */
-        getTemplate(templateId) {
-            return {
-                id: 16,
-                name: '16年模版',
-                previewList: [
-                    {
-                        componentName: 'Banner',
-                        props: {
-                            imgSrc: 'https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3448484253,3685836170&fm=27&gp=0.jpg'
-                        }
-                    }, {
-                        componentName: 'Input',
-                        props: {
-                            placeholder: '请输入要搜索的商品'
-                        }
-                    }
-                ]
-            }
-        },
-
         okHandler() {
 
             let newTemplate = JSON.parse(JSON.stringify(this.currentTemplate))
@@ -229,8 +206,13 @@ export default {
     created() {
         if (this.operation === 'edit') {
             
-            // 从接口中拉取模版配置
-            this.currentTemplate = this.getTemplate(this.templateId)
+            debugger
+            let _this = this
+            MagicService.getTemplate(this.templateId, {
+                callback: (data) => {
+                    _this.currentTemplate = data
+                }
+            })
         }
     },
     mounted () {
