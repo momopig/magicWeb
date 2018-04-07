@@ -33,7 +33,7 @@ export const makeUrlString = (pathStr, paramObj) => {
 const responseHandler = (response, successConfig = {msg: '', callback: null}, failConfig = {msg: '', callback: null}) => {
 
   // 处理成功
-  if (response.code === 200) {
+  if (response.code === '200') {
     // if (response.message) {
     //     this.$Message.success(response.message, TIPS_DURATION)
     // } else if (successConfig.msg) {

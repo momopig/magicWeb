@@ -20,7 +20,7 @@ import { makeUrlString, get, drop, post } from './common.js'
 //   }
   
 let getTemplateList = function (query, successConfig, failConfig) {
-    let url = makeUrlString('/mock/api/magic/template/get/list', query)
+    let url = makeUrlString('/mock/api/magic/template/get/list')
     get(url, successConfig, failConfig)
 }
 
