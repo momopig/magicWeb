@@ -1,4 +1,5 @@
-import Main from '@/views/Main.vue';
+import Main from '@/views/main/index.vue';
+// import Main from '@/views/Main.vue';
 
 // 不作为Main组件的子页面展示的页面单独写，如下
 export const loginRouter = {
@@ -75,6 +76,19 @@ export const appRouter = [
         children: [
             { path: 'template-list', title: '移动端-首页模版列表', name: 'list', icon: 'compose', component: () => import('@/views/magic/template-list.vue') },
             { path: 'template-create-edit', title: '移动端-首页模版设置', name: 'create-edit', icon: 'compose', component: () => import('@/views/magic/template-create-edit.vue') }
+        ]
+    },
+    {
+        path: '/intelligence',
+        icon: '',
+        name: 'intelligence',
+        title: 'intelligence',
+        component: Main,
+        children: [
+            { path: 'nav', title: '导航页', name: 'nav', component: () => import('@/views/main/children/intelligence/nav/index.vue') },
+            { path: 'search', title: '搜索页', name: 'search', component: () => import('@/views/main/children/intelligence/search/index.vue') },
+            { path: 'detail', title: '详情页', name: 'detail', component: () => import('@/views/main/children/intelligence/detail/index.vue') },
+            { path: 'forecast', title: '预测页', name: 'forecast', component: () => import('@/views/main/children/intelligence/forecast/index.vue') },
         ]
     },
     {
