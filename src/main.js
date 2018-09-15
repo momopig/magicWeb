@@ -1,4 +1,6 @@
 import Vue from 'vue';
+import VueECharts from 'vue-echarts';
+
 import iView from 'iview';
 import {router} from './router/index';
 import {appRouter} from './router/router';
@@ -10,6 +12,7 @@ import util from './libs/util';
 
 Vue.use(VueI18n);
 Vue.use(iView);
+Vue.component('v-chart', VueECharts);
 
 new Vue({
     el: '#app',
