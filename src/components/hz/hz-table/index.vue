@@ -35,7 +35,7 @@
 </script>
 <style lang="less">
     .hz-table {
-        .title:  {
+        .title {
             
         }
     }

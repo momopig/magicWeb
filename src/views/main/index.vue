@@ -11,7 +11,7 @@
     </div>
 </template>
 <script>
-    import commonHeader from '@/views/header/index.vue'
+    import commonHeader from './components/header/index.vue'
     import util from '@/libs/util.js';
     
     export default {
