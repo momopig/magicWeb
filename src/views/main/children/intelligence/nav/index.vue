@@ -46,7 +46,7 @@
         width: 200px;
         height: 100px;
         box-shadow:0px 0px 1px rgba(0, 0, 0, 0.2);
-        margin: 28px;
+        margin: 28px 20px;
         color: #333;
         font-size: 18px;
         line-height: 100px;
