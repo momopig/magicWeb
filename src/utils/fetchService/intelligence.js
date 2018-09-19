@@ -10,9 +10,13 @@ let getHistoryList = function (query, successConfig, failConfig) {
     let url = makeUrlString('/mock/api/query/history', {offset: query.offset, count: query.count})
     get(url, successConfig, failConfig)
 }
-
+let getPrediction = function (query, successConfig, failConfig) {
+    let url = makeUrlString('/mock/api/query/prediction', {type: query.type})
+    get(url, successConfig, failConfig)
+}
 export default {
     getHotList,
-    getHistoryList
+    getHistoryList,
+    getPrediction
 }
   

@@ -65,7 +65,7 @@ const responseHandler = (response, successConfig = {msg: '', callback: null}, fa
  
 
 export const get = (url, successConfig, failConfig) => {
-    fetch(url, {
+    return fetch(url, {
         method: 'GET',
         // credentials: 'include'
         credentials: 'same-origin'
