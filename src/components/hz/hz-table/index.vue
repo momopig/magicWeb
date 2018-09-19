@@ -24,7 +24,7 @@
                 default: ()=>{
                     return {
                         title: '',
-                        headers: [], // {name: 'dssd', label: 'dssd', width: '?px'}
+                        headers: [], // {name: 'dssd', label: 'dssd'}
                         datas: []
                     }
                 }
