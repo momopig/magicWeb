@@ -5,9 +5,14 @@ import { makeUrlString, get, drop, post } from './common.js'
 let getHotList = function (query, successConfig, failConfig) {
     let url = makeUrlString('/mock/api/query/hotspot', {offset: query.offset, count: query.count})
     get(url, successConfig, failConfig)
+};
+let getHistoryList = function (query, successConfig, failConfig) {
+    let url = makeUrlString('/mock/api/query/history', {offset: query.offset, count: query.count})
+    get(url, successConfig, failConfig)
 }
 
 export default {
-    getHotList
+    getHotList,
+    getHistoryList
 }
   

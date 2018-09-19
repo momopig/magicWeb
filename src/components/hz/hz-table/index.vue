@@ -7,7 +7,10 @@
             </tr>
             <tr v-for="(tdItem) in options.rows">
                 <td v-for="(thItem, index) in options.headers">
-                    {{ tdItem[thItem.name] }}
+                    <div v-if="thItem.name === 'heat'">
+                        <span v-for="i in tdItem[thItem.name]">*</span>
+                    </div>
+                    <div v-else> {{ tdItem[thItem.name] }}</div>
                 </td>
             </tr>
         </table>
@@ -21,7 +24,7 @@
                 default: ()=>{
                     return {
                         title: '',
-                        headers: [], // {name: 'dssd', label: 'dssd'}
+                        headers: [], // {name: 'dssd', label: 'dssd', width: '?px'}
                         datas: []
                     }
                 }
