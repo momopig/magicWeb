@@ -1,9 +1,6 @@
 <template>
     <div class="result-page">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
-            <li class="breadcrumb-item active">金融知识检索</li>
-        </ol>
+        <breadcrumb />
         <div class="result-content">
             <div class="result-body">
                 <div class="title">{{this.query.keyWord}}</div>
@@ -16,9 +13,11 @@
     </div>
 </template>
 <script>
+    import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     import intelligenceService from '@/utils/fetchService/intelligence.js' 
     export default {
         components: {
+            breadcrumb
         },
         data() {
             return {

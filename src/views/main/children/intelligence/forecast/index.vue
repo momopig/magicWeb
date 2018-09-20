@@ -1,6 +1,6 @@
 <template>
     <div class="forecast-page">
-         <breadcrumb />
+        <breadcrumb />
         <div class="main-content">
             <div class="description">
                 以流动性风险管理新规为例，2018年5月25日，商业银行流动性风险管理办法正式亮相，并自2018年7月1日起施行。
