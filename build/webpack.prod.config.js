@@ -44,11 +44,11 @@ module.exports = merge(webpackBaseConfig, {
                 NODE_ENV: '"production"'
             }
         }),
-        new webpack.optimize.UglifyJsPlugin({
-            compress: {
-                warnings: false
-            }
-        }),
+        // new webpack.optimize.UglifyJsPlugin({
+        //     compress: {
+        //         warnings: false
+        //     }
+        // }),
         // new UglifyJsParallelPlugin({
         //     workers: os.cpus().length,
         //     mangle: true,
