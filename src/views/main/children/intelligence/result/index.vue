@@ -7,34 +7,49 @@
         <div class="result-content">
             <div class="input-area">
                 <div class="result-inputbox">
-                    <input type="text" class="input result-input" ref="inputSearch" placeholder="请输入关键字">
+                    <input type="text" class="input result-input" ref="inputSearch" placeholder="请输入关键字" v-model="query.keyWord">
                     <a v-on:click="getSearchData()" class="result-input-btn iconfont icon-SearchBox" href="javascript: void(0);"></a>
                 </div>
             </div>
             <div class="result-body">
-                <div class="title">授信集中度</div>
+                <div class="title">{{this.query.keyWord}}</div>
                 <div class="card half">
                     <div class="label">法律或监管规定：</div>
                     <div class="value">
-                        1.单一集团客户授信集中度又称单一客户授信集中度，为最大一家集团客户授信总额与资本净额之比，不应高于15%。该项指标为一级指标，包括单一客户贷款集中度一个二级指标；单一客户贷款集中度为最大一家客户贷款总额与资本净额之比，不应高于10%。
+                        <div v-if="index < 3" class="value-item" v-for="(item, index) in searchValues.law.data.datas">
+                            <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
+                            <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
+                        </div>
                     </div>
                 </div>
                 <div class="card half">
                     <div class="label">行内制度流程规定：</div>
                     <div class="value">
-                        1.单一集团客户授信集中度又称单一客户授信集中度，为最大一家集团客户授信总额与资本净额之比，不应高于15%。该项指标为一级指标，包括单一客户贷款集中度一个二级指标；单一客户贷款集中度为最大一家客户贷款总额与资本净额之比，不应高于10%。
+                        <div  v-if="index < 3" class="value-item" v-for="(item, index) in searchValues.rule.data.datas">
+                            <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
+                            <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
+                            <div v-if="3 <= index + 1"><span class="search-details">    <...查看详情></span></div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="card ">
                     <div class="label">行内相关业务：</div>
                     <div class="value">
-                        1.单一集团客户授信集中度又称单一客户授信集中度，为最大一家集团客户授信总额与资本净额之比，不应高于15%。该项指标为一级指标，包括单一客户贷款集中度一个二级指标；单一客户贷款集中度为最大一家客户贷款总额与资本净额之比，不应高于10%。
+                        <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.business.data.datas">
+                            <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
+                            <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
+                            <div v-if="1 < searchValues.business.data.datas.length"><span class="search-details">    <...查看详情></span></div>
+                        </div>                        
                     </div>
                 </div>
                 <div class="card ">
                     <div class="label">风险提示：</div>
                     <div class="value">
-                        1.单一集团客户授信集中度又称单一客户授信集中度，为最大一家集团客户授信总额与资本净额之比，不应高于15%。该项指标为一级指标，包括单一客户贷款集中度一个二级指标；单一客户贷款集中度为最大一家客户贷款总额与资本净额之比，不应高于10%。
+                        <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.risk.data.datas">
+                            <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
+                            <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
+                            <div v-if="1 < searchValues.risk.data.datas.length"><span class="search-details">    <...查看详情></span></div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -48,11 +63,20 @@
         },
         data() {
             return {
+                types: ['law', 'rule', 'business', 'risk', 'extend'],
+                seachKeyWord: '',
                 query: {
                     offset: 0,
                     count: 5,
                     dataType: 'law',
-                    keyWord: '',
+                    keyWord: ''
+                },
+                searchValues: {
+                    law: {data: {datas: []}},
+                    rule: {data: {datas: []}},
+                    business: {data: {datas: []}},
+                    risk: {data: {datas: []}},
+                    extend: {data: {datas: []}}
                 },
                 historyOptions: {
                     title: '历史查询内容',
@@ -76,28 +100,31 @@
             }
         },
         created() {
-            intelligenceService.getHistoryList(this.query, {
-                callback: (data) => {
-                    this.historyOptions.rows = data.datas
-                    this.historyOptions.show = true
-                }
-            });
-            intelligenceService.getHotList(this.query, {
-                callback: (data) => {        
-                    this.hotpointOptions.rows = data.datas
-                    this.hotpointOptions.show = true
-                }
-            })
+            debugger
+            this.query.keyWord = this.$route.query.keyWord
+        },
+        mounted() {
+            debugger
+            this.getSearchData()
         },
         methods:{
             getSearchData: function(){
-                var searchData =  this.$refs.inputSearch.value
-                this.query.keyWord = searchData
-                intelligenceService.getSearchData(this.query, {
-                    callback: (data) => {    
-                        console.log(data)
-                    }
-                });   
+                this.types.forEach(type => {
+                    this.query.dataType = type
+                    intelligenceService.getSearchData(this.query, {
+                        callback: (data) => {
+                            this.searchValues[type].data = data
+                            // if (type === 'law') {
+                            //     this.searchValues[type].data.datas.push(data.datas[0])
+                            //     this.searchValues[type].data.datas.push(data.datas[0])
+                            // }  
+                        }
+                    })
+                })
+            },
+            emphasizeKey(string, key) {
+                var reg = new RegExp(key, "g");
+                return string.replace(reg, '<span class="strong">' + key + '</span>')
             }
         }
     };
@@ -194,6 +221,7 @@
             .card {
                 &.half {
                     display: inline-block;
+                    vertical-align: top;
                     width: 464px;
                     >.value {
                         min-height: 220px;
@@ -210,6 +238,21 @@
                     height: 76px;
                     padding: 16px;
                     border: 1px solid #E3E3E3;
+
+                    overflow: hidden;
+                    >.value-item {
+                        margin-bottom: 10px;
+                        >.title {
+                            font-weight: bold;
+                        }
+                    }
+                    .strong {
+                        color: #E25555
+                    }
+                    .search-details {
+                        color: #E25555;
+                        cursor: pointer;
+                    }
                 }
             }
         }
