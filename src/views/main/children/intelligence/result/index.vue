@@ -28,7 +28,7 @@
                         <div  v-if="index < 3" class="value-item" v-for="(item, index) in searchValues.rule.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="3 <= index + 1"><span class="search-details">    <...查看详情></span></div>
+                            <div v-if="3 <= index + 1"><a class="search-details"><...查看详情></a></div>
                         </div>                        
                     </div>
                 </div>
@@ -38,7 +38,7 @@
                         <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.business.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="1 < searchValues.business.data.datas.length"><span class="search-details">    <...查看详情></span></div>
+                            <div v-if="1 < searchValues.business.data.datas.length"><a class="search-details"><...查看详情></a></div>
                         </div>                        
                     </div>
                 </div>
@@ -48,7 +48,7 @@
                         <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.risk.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="1 < searchValues.risk.data.datas.length"><span class="search-details">    <...查看详情></span></div>
+                            <div v-if="1 < searchValues.risk.data.datas.length"><a :href="'/#/intelligence/detail?type=risk&keyWord=' + query.keyWord" class="search-details"><...查看详情></a></div>
                         </div>
                     </div>
                 </div>
