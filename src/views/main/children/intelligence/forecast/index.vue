@@ -1,7 +1,13 @@
 <template>
     <div class="forecast-page">
-        <div class="bread"></div>
+        <div class="bread">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
+                <li class="breadcrumb-item active">监管预测预警</li>
+            </ol>
+        </div>
         <div class="main-content">
+            <div class="main-content-title">监管预测预警</div>
             <div class="description">
                 以流动性风险管理新规为例，2018年5月25日，商业银行流动性风险管理办法正式亮相，并自2018年7月1日起施行。
                 整体而言，流动性新规对商业银行流动性风险的指标要求分为两大层面，即<span class="strong">监管指标</span>和<span class="strong">监测指标</span>。
@@ -187,12 +193,12 @@
         created() {
             Promise.all([            intelligenceService.getPrediction({type: 'liquidityCoverage'}, {
                 callback: (a) => {
-                    debugger
+                    // debugger
                     // this.historyOptions.rows = a.historyData
                     // this.historyOptions.show = true
                 }
             })]).then(values => { 
-                debugger
+                // debugger
                  console.log(values);
 }).catch(reason => { 
   console.log(reason)
@@ -209,7 +215,17 @@
             background: #fff;
             padding: 16px 24px 0 16px;
             overflow: auto;
+            .main-content-title{
+                width: 100%;
+                height: 42px;
+                padding: 10px 16px;
+                border-bottom: 1px solid #F0F2F3;
+                margin-bottom: 16px;
+                font-size: 18px;
+                line-height: 21px;
+            }
             .description {
+                text-indent:2em;
                 margin-bottom: 40px;
                 font-size: 14px;
                 color: #666666;

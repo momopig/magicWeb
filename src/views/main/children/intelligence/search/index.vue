@@ -79,28 +79,6 @@
     };
 </script>
 <style lang="less">
-.breadcrumb{
-    margin: 24px 0 16px;
-    list-style: none;
-    font-size: 12px;
-    .breadcrumb-item{
-        color: #BDBDBD;
-        a{
-            color: #BDBDBD;
-        }
-        display: inline-block;
-        &:after{
-            content: " > ";
-        }
-        &:last-child{
-            color: #767676;
-            &:after{
-                content: "";
-            }
-        }
-    }
-}
-
 .search-inputbox{
     position: relative;
     width: 720px;
