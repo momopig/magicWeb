@@ -8,7 +8,6 @@
     .common-header {
         width: 100%;
         height: 56px;
-        margin-bottom: 4px;
         background-color: #fff;
         box-shadow:0px 2px 4px rgba(0, 0, 0, 0.2);
         .systemlogo{
