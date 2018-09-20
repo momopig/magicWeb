@@ -5,7 +5,7 @@ import Main from '@/views/main/index.vue';
 export const loginRouter = {
     path: '/login',
     name: 'login',
-    // redirect: '/intelligence/nav',
+    redirect: '/intelligence/nav',
     meta: {
         title: 'Login - 登录'
     },
