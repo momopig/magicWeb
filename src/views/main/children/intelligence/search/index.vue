@@ -51,27 +51,30 @@
         },
         created() {
             intelligenceService.getHistoryList(this.query, {
-                callback: (a) => {
-
-                    this.historyOptions.rows = a.historyData
+                callback: (data) => {
+                    this.historyOptions.rows = data.datas
                     this.historyOptions.show = true
                 }
             });
             intelligenceService.getHotList(this.query, {
                 callback: (data) => {        
-                    this.hotpointOptions.rows = data.hotData
+                    this.hotpointOptions.rows = data.datas
                     this.hotpointOptions.show = true
                 }
             })
         },
         methods:{
             getSearchData: function(){
-                this.query.keyWord = this.$refs.inputSearch.value
-                intelligenceService.getSearchData(this.query, {
-                    callback: (data) => {    
-                        console.log(data)
-                    }
-                });   
+
+                var searchData =  this.$refs.inputSearch.value
+                this.query.keyWord = searchData
+                window.location.href="/#/intelligence/result?keyWord=" + this.query.keyWord
+                // this.$router.push({
+                //     name: 'result',
+                //     query: {
+                //         keyWord: this.query.keyWord
+                //     }
+                // });
             }
         }
     };
