@@ -100,11 +100,9 @@
             }
         },
         created() {
-            debugger
             this.query.keyWord = this.$route.query.keyWord
         },
         mounted() {
-            debugger
             this.getSearchData()
         },
         methods:{
@@ -224,7 +222,7 @@
                     vertical-align: top;
                     width: 464px;
                     >.value {
-                        min-height: 220px;
+                        height: 220px;
                     }
                 }
                 >.label {
@@ -235,7 +233,7 @@
                 >.value {
                     box-sizing: border-box;
                     width: 100%;
-                    height: 76px;
+                    height: 86px;
                     padding: 16px;
                     border: 1px solid #E3E3E3;
 

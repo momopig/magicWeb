@@ -116,7 +116,6 @@ export default {
         **/
         removeComponent(index, $event) {
             $event.stopPropagation()
-            debugger
             this.currentTemplate.previewList.splice(index, 1)
             this.currentComponent = {}
         },
@@ -126,7 +125,6 @@ export default {
         *
         **/
         configComponentProps(component) {
-            debugger
             this.currentComponent = component
         },
 
@@ -205,8 +203,6 @@ export default {
     },
     created() {
         if (this.operation === 'edit') {
-            
-            debugger
             let _this = this
             MagicService.getTemplate(this.templateId, {
                 callback: (data) => {

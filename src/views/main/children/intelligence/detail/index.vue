@@ -1,12 +1,12 @@
 <template>
-    <div class="result-page">
+    <div class="detail-page">
         <ol class="breadcrumb">
             <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
             <li class="breadcrumb-item active">金融知识检索</li>
         </ol>
-        <div class="result-content">
-            <div class="result-body">
-                <div class="title">{{this.query.keyWord}}</div>
+        <div class="detail-content">
+            <div class="detail-body">
+                <div class="title">{{this.searchValues[this.query.dataType].name}}</div>
                 <div v-if="show" class="value-item" v-for="(item, index) in searchValues[query.dataType].data.datas">
                     <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                     <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
@@ -32,11 +32,11 @@
                     keyWord: ''
                 },
                 searchValues: {
-                    law: {data: {datas: []}},
-                    rule: {data: {datas: []}},
-                    business: {data: {datas: []}},
-                    risk: {data: {datas: []}},
-                    extend: {data: {datas: []}}
+                    law: {name: '法律或监管规定：', data: {datas: []}},
+                    rule: {name: '行内制度流程规定：', data: {datas: []}},
+                    business: {name: '行内相关业务：', data: {datas: []}},
+                    risk: {name: '风险提示：', data: {datas: []}},
+                    extend: {name: '', data: {datas: []}}
                 }
             }
         },
@@ -92,10 +92,10 @@
 }
 
 
-.result-page{
+.detail-page{
     width: 970px;
     margin: 0 auto;
-    .result-content{
+    .detail-content{
         width: 100%;
         margin-top: 10px;
         .input-area {
@@ -103,7 +103,7 @@
             height: 96px;
             padding: 24px 0 24px 16px;
             text-align: left;
-            .result-inputbox{
+            .detail-inputbox{
                 position: relative;
                 background: #fff;
                 width: 720px;
@@ -111,7 +111,7 @@
                 border:1px solid #E3E3E3;
                 border-radius: 28px;
                 margin-bottom: 40px;
-                .result-input{
+                .detail-input{
                     display: block;
                     position: absolute;
                     top:12px;
@@ -134,7 +134,7 @@
                         color: #BDBDBD;
                     }
                 }
-                .result-input-btn{
+                .detail-input-btn{
                     position: absolute;
                     top: 2px;
                     right: 25px;
@@ -145,24 +145,31 @@
                 }
             }
         }
-        .result-body {
+        .detail-body {
             box-sizing: border-box;
             background: #fff;
             padding: 24px 16px;
             width: 100%;
+            min-height: 500px;
             margin-top: 10px;
+
             >.title {
                 padding-bottom: 16px;
                 border-bottom: 1px solid #F0F2F3;
                 font-size: 18px;
                 color: #333333;
             }
-            .strong {
-                color: #E25555
+            .value-item {
+                margin-top: 12px;
             }
+
 
         }
     }
+    .strong {
+        color: #E25555
+    }
 }
+
 
 </style>
