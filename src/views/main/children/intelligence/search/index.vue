@@ -1,9 +1,6 @@
 <template>
     <div class="search-page">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
-            <li class="breadcrumb-item active">金融知识检索</li>
-        </ol>
+        <breadcrumb />
         <div class="search-content">
             <div class="search-inputbox">
                 <input type="text" class="input search-input" ref="inputSearch" placeholder="请输入关键字">
@@ -15,11 +12,13 @@
     </div>
 </template>
 <script>
+    import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     import intelligenceService from '@/utils/fetchService/intelligence.js' 
     import hzTable from '@/components/hz/hz-table/index.vue' 
     export default {
         components: {
-            hzTable
+            hzTable,
+            breadcrumb
         },
         data() {
             return {
@@ -66,6 +65,7 @@
         },
         methods:{
             getSearchData: function(){
+
                 var searchData =  this.$refs.inputSearch.value
                 this.query.keyWord = searchData
                 window.location.href="/#/intelligence/result?keyWord=" + this.query.keyWord
@@ -80,28 +80,6 @@
     };
 </script>
 <style lang="less">
-.breadcrumb{
-    margin: 24px 0 16px;
-    list-style: none;
-    font-size: 12px;
-    .breadcrumb-item{
-        color: #BDBDBD;
-        a{
-            color: #BDBDBD;
-        }
-        display: inline-block;
-        &:after{
-            content: " > ";
-        }
-        &:last-child{
-            color: #767676;
-            &:after{
-                content: "";
-            }
-        }
-    }
-}
-
 .search-inputbox{
     position: relative;
     width: 720px;
