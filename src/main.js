@@ -9,6 +9,7 @@ import App from './app.vue';
 import 'iview/dist/styles/iview.css';
 import VueI18n from 'vue-i18n';
 import util from './libs/util';
+import './images/iconfont/iconfont.css'
 
 Vue.use(VueI18n);
 Vue.use(iView);
