@@ -8,7 +8,7 @@
             <tr v-for="(tdItem) in options.rows">
                 <td v-for="(thItem, index) in options.headers">
                     <div v-if="thItem.name === 'heat'">
-                        <span v-for="i in tdItem[thItem.name]">*</span>
+                        <span v-for="i in tdItem[thItem.name]"><span class="redstar iconfont icon-recommend"></span></span>
                     </div>
                     <div v-else> {{ tdItem[thItem.name] }}</div>
                 </td>
@@ -40,6 +40,10 @@
     .hz-table {
         .title {
             
+        }
+        .redstar{
+            color: #D24545;
+            font-size: 16px;
         }
     }
 </style>

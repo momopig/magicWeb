@@ -6,8 +6,8 @@
         </ol>
         <div class="search-content">
             <div class="search-inputbox">
-                <input type="text" class="input search-input" id="" placeholder="请输入关键字">
-                <a class="search-input-btn iconfont icon-SearchBox" href="javascript: void(0);"></a>
+                <input type="text" class="input search-input" ref="inputSearch" placeholder="请输入关键字">
+                <a v-on:click="getSearchData()" class="search-input-btn iconfont icon-SearchBox" href="javascript: void(0);"></a>
             </div>
             <hz-table class="historyTable" v-if="historyOptions.show" :options="historyOptions"/>
             <hz-table class="hotpointTable" v-if="hotpointOptions.show" :options="hotpointOptions"/>
@@ -25,7 +25,9 @@
             return {
                 query: {
                     offset: 0,
-                    count: 5
+                    count: 5,
+                    dataType: 'law',
+                    keyWord: '',
                 },
                 historyOptions: {
                     title: '历史查询内容',
@@ -45,7 +47,7 @@
                         {name: 'heat', label: '热度'}
                     ]
                 },
-                recommendData: null
+                recommendData: null,
             }
         },
         created() {
@@ -63,9 +65,15 @@
             })
         },
         methods:{
-    
-
-
+            getSearchData: function(){
+                var searchData =  this.$refs.inputSearch.value
+                this.query.keyWord = searchData
+                intelligenceService.getSearchData(this.query, {
+                    callback: (data) => {    
+                        console.log(data)
+                    }
+                });   
+            }
         }
     };
 </script>
@@ -126,11 +134,12 @@
     }
     .search-input-btn{
         position: absolute;
-        top: 10px;
-        right: 20px;
+        top: 2px;
+        right: 25px;
         width: 24px;
         height: 24px;
-        background: #767676
+        font-size: 30px;
+        color:#999;
     }
 }
 .search-page{

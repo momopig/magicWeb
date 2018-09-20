@@ -99,11 +99,11 @@ router.get('/mock/api/query/history', function (req, res, next) {
         }  
     )    
 })
-  router.get('/mock/api/query/knowledge', function (req, res, next) {
+router.get('/mock/api/query/knowledge', function (req, res, next) {
     res.json(
         {"status":0,"msg":"OK","data":{"totalCount":8,"datas":[{"id":1,"content":"单一集团客户授信集中度又称单一客户授信集中度"},{"id":2,"content":"单一集团客户授信集中度＝最大一家集团客户授信总额／资本净额×100%"}]}}  
     )
-  })
+})
 
   router.get('/mock/api/query/prediction', function (req, res, next) {
     res.json(
