@@ -1,8 +1,15 @@
 <template>
     <div class="detail-page">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
-            <li class="breadcrumb-item active">金融知识检索</li>
+            <li class="breadcrumb-item">
+                <a href="/#/">首页</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a :href="'/#/intelligence/result?keyWord=' + query.keyWord">金融知识检索</a>
+            </li>
+            <li class="breadcrumb-item">
+                <a href="javascript:void(0)">详情</a>
+            </li>
         </ol>
         <div class="detail-content">
             <div class="detail-body">
@@ -16,9 +23,11 @@
     </div>
 </template>
 <script>
+    import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     import intelligenceService from '@/utils/fetchService/intelligence.js' 
     export default {
         components: {
+            breadcrumb
         },
         data() {
             return {
@@ -74,10 +83,10 @@
     list-style: none;
     font-size: 12px;
     .breadcrumb-item{
-        color: #BDBDBD;
         a{
-            color: #BDBDBD;
+            color:#BDBDBD;
         }
+        color: #BDBDBD;
         display: inline-block;
         &:after{
             content: " > ";
@@ -87,64 +96,19 @@
             &:after{
                 content: "";
             }
+            a{
+                color:#767676;
+                cursor:auto;
+            }
         }
     }
 }
-
-
 .detail-page{
     width: 970px;
     margin: 0 auto;
     .detail-content{
         width: 100%;
         margin-top: 10px;
-        .input-area {
-            background: #fff;
-            height: 96px;
-            padding: 24px 0 24px 16px;
-            text-align: left;
-            .detail-inputbox{
-                position: relative;
-                background: #fff;
-                width: 720px;
-                height: 48px;
-                border:1px solid #E3E3E3;
-                border-radius: 28px;
-                margin-bottom: 40px;
-                .detail-input{
-                    display: block;
-                    position: absolute;
-                    top:12px;
-                    left: 30px;
-                    width: 630px;
-                    height: 24px;
-                    border:none;
-                    outline: medium;
-                    font-size: 16px;
-                    &::-webkit-input-placeholder{
-                        color: #BDBDBD;
-                    }
-                    &:-moz-placeholder{
-                        color: #BDBDBD;
-                    }
-                    &:-moz-placeholder{
-                        color: #BDBDBD;
-                    }
-                    &:-ms-input-placeholder{
-                        color: #BDBDBD;
-                    }
-                }
-                .detail-input-btn{
-                    position: absolute;
-                    top: 2px;
-                    right: 25px;
-                    width: 24px;
-                    height: 24px;
-                    font-size: 30px;
-                    color:#999;
-                }
-            }
-        }
         .detail-body {
             box-sizing: border-box;
             background: #fff;
@@ -162,8 +126,6 @@
             .value-item {
                 margin-top: 12px;
             }
-
-
         }
     }
     .strong {
