@@ -68,11 +68,13 @@
             getSearchData: function(){
                 var searchData =  this.$refs.inputSearch.value
                 this.query.keyWord = searchData
-                intelligenceService.getSearchData(this.query, {
-                    callback: (data) => {    
-                        console.log(data)
-                    }
-                });   
+                window.location.href="/#/intelligence/result?keyWord=" + this.query.keyWord
+                // this.$router.push({
+                //     name: 'result',
+                //     query: {
+                //         keyWord: this.query.keyWord
+                //     }
+                // });
             }
         }
     };
