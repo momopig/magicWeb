@@ -5055,7 +5055,7 @@ exports = module.exports = __webpack_require__(29)(false);
 
 
 // module
-exports.push([module.i, "\n.common-header {\n  width: 100%;\n  height: 56px;\n  margin-bottom: 4px;\n  background-color: #fff;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);\n}\n.common-header .systemlogo {\n  width: 344px;\n  height: 38px;\n  margin: 9px 6px;\n}\n", ""]);
+exports.push([module.i, "\n.common-header {\n  width: 100%;\n  height: 56px;\n  background-color: #fff;\n  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);\n}\n.common-header .systemlogo {\n  width: 344px;\n  height: 38px;\n  margin: 9px 6px;\n}\n", ""]);
 
 // exports
 
