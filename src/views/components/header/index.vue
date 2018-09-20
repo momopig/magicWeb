@@ -12,7 +12,7 @@
 </style>
 <script>
     export default {
-        name: 'header',
+        name: 'commonHeader',
         data () {
             return {
 
