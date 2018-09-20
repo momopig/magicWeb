@@ -33,7 +33,7 @@ export const makeUrlString = (pathStr, paramObj) => {
 const responseHandler = (response, successConfig = {msg: '', callback: null}, failConfig = {msg: '', callback: null}) => {
 
   // 处理成功
-  if (response.code === '200') {
+  if (response.status === 0) {
     // if (response.message) {
     //     this.$Message.success(response.message, TIPS_DURATION)
     // } else if (successConfig.msg) {
@@ -43,7 +43,7 @@ const responseHandler = (response, successConfig = {msg: '', callback: null}, fa
     // }
 
     if (successConfig.callback) {
-        successConfig.callback(response.data)
+        return successConfig.callback(response.data)
     }
   } else { // 其它异常处理
 
@@ -58,21 +58,21 @@ const responseHandler = (response, successConfig = {msg: '', callback: null}, fa
 
     // 执行自定义的failCallback
     if (failConfig.callback) {
-        failConfig.callback(response.data)
+        return failConfig.callback(response.data)
     }
   }
 }
  
 
 export const get = (url, successConfig, failConfig) => {
-    fetch(url, {
+    return fetch(url, {
         method: 'GET',
         // credentials: 'include'
         credentials: 'same-origin'
     }).then(res => {
         return res.json()
     }).then(data => {
-        responseHandler(data, successConfig, failConfig)
+        return responseHandler(data, successConfig, failConfig)
     }).catch(err => {
         console.log(err)
         // this.$Message.error(TIPS_INTERFACE_ERROR, TIPS_DURATION)          
@@ -80,14 +80,14 @@ export const get = (url, successConfig, failConfig) => {
 }
 
 export const drop = (url, successConfig, failConfig) => {
-    fetch(url, {
+    return fetch(url, {
         method: 'DELETE',
         // credentials: 'include'
         credentials: 'same-origin'
     }).then(res => {
         return res.json()
     }).then(data => {
-        responseHandler(data, successConfig, failConfig)
+        return responseHandler(data, successConfig, failConfig)
     }).catch(err => {
         console.log(err)
         // this.$Message.error(TIPS_INTERFACE_ERROR, TIPS_DURATION)          
@@ -101,7 +101,7 @@ export const post = (url, bodyData, successConfig, failConfig) => {
       bodyData = JSON.stringify(bodyData)
       contentType = 'application/json'
     } 
-    fetch(url, {
+    return fetch(url, {
         method: 'POST',
         // credentials: 'include',
         credentials: 'same-origin',
@@ -110,7 +110,7 @@ export const post = (url, bodyData, successConfig, failConfig) => {
     }).then(res => {
         return res.json()
     }).then(data => {
-        responseHandler(data, successConfig, failConfig)
+        return responseHandler(data, successConfig, failConfig)
     }).catch(err => {
       console.log('catch error'+ err)
     //   this.$Message.error(TIPS_INTERFACE_ERROR, TIPS_DURATION)

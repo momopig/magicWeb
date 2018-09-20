@@ -1,10 +1,9 @@
-<style lang="less">
-</style>
 <template>
-    <div class="main" :class="{'main-hide-text': shrink}">
-        <div class="single-page-con" :style="{left: shrink?'60px':'200px'}">
+    <div class="main">
+        <common-header />
+        <div class="single-page-con">
             <div class="single-page">
-                <keep-alive :include="cachePage">
+                <keep-alive>
                     <router-view></router-view>
                 </keep-alive>
             </div>
@@ -12,10 +11,14 @@
     </div>
 </template>
 <script>
+    import commonHeader from './components/header/index.vue'
     import util from '@/libs/util.js';
     
     export default {
         components: {
+            commonHeader
         }
     };
 </script>
+<style lang="less">
+</style>

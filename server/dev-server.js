@@ -38,8 +38,8 @@ compiler.plugin('compilation', function (compilation) {
   })
 })
 
-  const apiProxy = proxyMiddleware('/api', {
-    target: 'http://10.10.10.58:10030'
+  const apiProxy = proxyMiddleware('/bqd', {
+    target: 'http://192.168.1.135:8080'
   })
   app.use(apiProxy) // api子目录下的都是用代理
   
