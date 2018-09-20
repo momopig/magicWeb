@@ -1,37 +1,15 @@
 <template>
     <div class="forecast-page">
-        <div class="bread">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
-                <li class="breadcrumb-item active">监管预测预警</li>
-            </ol>
-        </div>
+         <breadcrumb />
         <div class="main-content">
-            <div class="main-content-title">监管预测预警</div>
             <div class="description">
                 以流动性风险管理新规为例，2018年5月25日，商业银行流动性风险管理办法正式亮相，并自2018年7月1日起施行。
                 整体而言，流动性新规对商业银行流动性风险的指标要求分为两大层面，即<span class="strong">监管指标</span>和<span class="strong">监测指标</span>。
             </div>
-            <div class="tab-list">
-                <div class="tab-item active">
-                    <div class="title">流动性覆盖率</div>
-                    <line-chart :options="pieOptions" />
-                </div>
-                <div class="tab-item">
-                    <div class="title">流动性覆盖率</div>
-                    <line-chart :options="pieOptions" />
-                </div>
-                <div class="tab-item">
-                    <div class="title">流动性覆盖率</div>
-                    <line-chart :options="pieOptions" />
-                </div>
-                <div class="tab-item">
-                    <div class="title">流动性覆盖率</div>
-                    <line-chart :options="pieOptions" />
-                </div>
-                <div class="tab-item">
-                    <div class="title">流动性覆盖率</div>
-                    <line-chart :options="pieOptions" />
+            <div class="tab-list" v-if="showTabs">
+                <div v-bind:class="{'tab-item': true, 'active': key === currentTab}" v-for="(item, key) in chartsOptions" @click="selectTab(key)">
+                    <div class="title">{{ item.name }}</div>
+                    <line-chart :options="item.pieOptions" />
                 </div>
             </div>
             <div class="line-chart">
@@ -41,6 +19,7 @@
     </div>
 </template>
 <script>
+    import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     import LineChart from './components/lineChart/index.vue'
     import intelligenceService from '@/utils/fetchService/intelligence.js' 
     import Promise from 'es6-promise'
@@ -50,7 +29,8 @@
 
         },
         components: {
-            LineChart
+            LineChart,
+            breadcrumb
         },
         data() {
             var polar = {
@@ -76,7 +56,7 @@
                     xAxis: {
                         type: 'category',
                         boundaryGap: false,
-                        data: ['2017/8/1','2017/8/2','2017/8/3','2017/8/4','2017/8/5','2017/8/6','2017/8/7'],
+                        data: [],
                         axisLabel: {
                             rotate: 90
                         },
@@ -98,47 +78,43 @@
                         {
                             name:'置信上限',
                             type:'line',
-                            
+                            en: 'highLimit',
                             color: '#82C1F4',
-                            data:[0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7]
+                            data:[]
                         },
                         {
                             name:'趋势预测',
                             type:'line',
-                            
+                            en: 'trend',
                             color: '#FFAA1E',
-                            data:[0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8]
+                            data:[]
                         },
                         {
                             name:'置信下限',
                             type:'line',
-                            
+                            en: 'lowLimit',
                             color: '#00BBCA',
-                            data:[0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9]
+                            data:[]
                         },
                         {
                             name:'监管要求（不低于）',
                             type:'line',
-                            
+                            en: 'standard',
                             color: '#FF8080',
-                            data:[0.25, 0.25, 0.25, 0.25, 0.25]
+                            data:[]
                         },
                         {
                             name:'LCR（流动性覆盖率）',
                             type:'line',
-                            
+                             en: 'fact',
                             color: '#4F98EA',
-                            data:[0.7, 0.8, 0.9, 1, 1.2, 1.6, 1.8]
+                            data:[]
                         }
                     ]
                 }
-            return {
-                currentTab: 'liquidityCoverage',
-
-                pieOptions: {
+            const pieOptions = {
                     series: [
                         {
-                            name:'访问来源',
                             type:'pie',
                             radius: ['80%', '100%'],
                             avoidLabelOverlap: false,
@@ -151,59 +127,115 @@
                                 }
                             },
                             data:[
-                                {value: 1, name:'50%', backgroundColor: '#82C1F4'},
+                                {value: 0, name:'0%',
+                                    itemStyle: {
+                                        normal: {
+                                            color: ''
+                                        }
+                                    }
+                                },
+                                {value: 1,
+                                    itemStyle: {
+                                        normal: {
+                                            color: '#F0F2F3'
+                                        }
+                                    }
+                                },
                             ]
                         }
                     ]
-                },
-
+                }
+            return {
+                showTabs: false,
+                currentTab: 'liquidityCoverage',
                 chartsOptions: {
                     liquidityCoverage: {
                         name: '流动性覆盖率',
                         rate: '100%',
-                        lineChartOptions: polar
+                        color: '#3391FF',
+                        pieOptions: JSON.parse(JSON.stringify(pieOptions)),
+                        lineChartOptions: JSON.parse(JSON.stringify(polar))
                     },
                     netStableFundRatio: {
                         name: '净稳定资金比例',
                         rate: '100%',
-                        lineChartOptions: {
-                        }
+                        color: '#FFAA1E',
+                        pieOptions: JSON.parse(JSON.stringify(pieOptions)),
+                        lineChartOptions: JSON.parse(JSON.stringify(polar))
                     },
                     liquidityRatio: {
                         name: '流动性比例',
                         rate: '100%',
-                        lineChartOptions: {
-                        }
+                        color: '#FF8080',
+                        pieOptions: JSON.parse(JSON.stringify(pieOptions)),
+                        lineChartOptions: JSON.parse(JSON.stringify(polar))
                     },
                     liquidityMatchingRate: {
                         name: '流动匹配率',
                         rate: '100%',
-                        lineChartOptions: {
-                        }
+                        color: '#00BBCA',
+                        pieOptions: JSON.parse(JSON.stringify(pieOptions)),
+                        lineChartOptions: JSON.parse(JSON.stringify(polar))
                     },
                     liquidityAssetAdequacyRatio: {
                         name: '质流动性资产充足率',
                         rate: '100%',
-                        lineChartOptions: {
-                        }
+                        color: '#82C1F4',
+                        pieOptions: JSON.parse(JSON.stringify(pieOptions)),                       
+                        lineChartOptions: JSON.parse(JSON.stringify(polar))
                     },                                                            
                 }
             }
         },
         created() {
-            Promise.all([            intelligenceService.getPrediction({type: 'liquidityCoverage'}, {
-                callback: (a) => {
-                    // debugger
-                    // this.historyOptions.rows = a.historyData
-                    // this.historyOptions.show = true
-                }
-            })]).then(values => { 
-                // debugger
-                 console.log(values);
-}).catch(reason => { 
-  console.log(reason)
-});
+            var types = ['liquidityCoverage', 'netStableFundRatio', 'liquidityRatio', 'liquidityMatchingRate', 'liquidityAssetAdequacyRatio']
+            const _this = this
+            for (var key in this.chartsOptions) {
+                let lineObject = this.chartsOptions[key]
+                lineObject.pieOptions.series[0].data[0].itemStyle.normal.color = lineObject.color
+            }
+            Promise.all(types.map(type => {
+                return intelligenceService.getPrediction({type: type}, {
+                    callback: (data) => {
+                        if (data) {
+                            data.type = type
+                        }
+                        return data
+                        // this.historyOptions.rows = data.historyData
+                        // this.historyOptions.show = true
+                    }
+                })
+            })).then(values => {
+                values.forEach((item, index) => {
+                    if (!item) {
+                        return
+                    }
+                    const lineObject = _this.chartsOptions[item.type]
+                    lineObject.rate = item.rate
+                    lineObject.pieOptions.series[0].data[0].value = lineObject.rate
+                    lineObject.pieOptions.series[0].data[0].name = lineObject.rate * 100 + '%'
+                    lineObject.pieOptions.series[0].data[1].value = 1 - lineObject.rate
+                    item.predictions.forEach((dateItem) => {
+                        lineObject.lineChartOptions.xAxis.data.push(dateItem.staticDate)
+                        lineObject.lineChartOptions.series.forEach(lineItem => {
+                            lineItem.data.push(dateItem[lineItem.en])
+                        })
+                    })
+                })
+                _this.showTabs = true
+            }).catch(reason => { 
+            console.log(reason)
+            })
 
+        },
+        mounted() {
+            this.$forceUpdate()
+        },
+        methods: {
+            selectTab(key) {
+                this.currentTab = key
+                console.log(this.chartsOptions[key].lineChartOptions)
+            }
         }
     };
 </script>
@@ -213,7 +245,7 @@
         margin: 0 auto;
         .main-content {
             background: #fff;
-            padding: 16px 24px 0 16px;
+            padding: 16px 24px 16px 16px;
             overflow: auto;
             .main-content-title{
                 width: 100%;

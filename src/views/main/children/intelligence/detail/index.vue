@@ -1,15 +1,13 @@
 <template>
     <div class="detail-page">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="/#/intelligence/nav">首页</a></li>
-            <li class="breadcrumb-item"><a href="/#/intelligence/search">金融知识检索</a></li>
-            <li class="breadcrumb-item active">详情</li>
-        </ol>
+       <breadcrumb />
     </div>
 </template>
 <script>
+    import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     export default {
         components: {
+            breadcrumb
         }
     };
 </script>

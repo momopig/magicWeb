@@ -1,43 +1,22 @@
 
 <template>
     <div class="common-header">
-        <a href=""><img :src="imgUrl" class="systemlogo"></a>
+        <a href="/#/intelligence"><img :src="imgUrl" class="systemlogo"></a>
     </div>
 </template>
 <style lang="less">
-.common-header {
-    width: 100%;
-    height: 56px;
-    margin-bottom: 4px;
-    background-color: #fff;
-    box-shadow:0px 2px 4px rgba(0, 0, 0, 0.2);
-    .systemlogo{
-        width: 344px;
-        height: 38px;
-        margin: 9px 6px;
-    }
-}
-.breadcrumb{
-    margin: 24px 0 16px;
-    list-style: none;
-    font-size: 12px;
-    .breadcrumb-item{
-        color: #BDBDBD;
-        a{
-            color: #BDBDBD;
-        }
-        display: inline-block;
-        &:after{
-            content: " > ";
-        }
-        &:last-child{
-            color: #767676;
-            &:after{
-                content: "";
-            }
+    .common-header {
+        width: 100%;
+        height: 56px;
+        margin-bottom: 4px;
+        background-color: #fff;
+        box-shadow:0px 2px 4px rgba(0, 0, 0, 0.2);
+        .systemlogo{
+            width: 344px;
+            height: 38px;
+            margin: 9px 6px;
         }
     }
-}
 </style>
 <script>
     export default {
