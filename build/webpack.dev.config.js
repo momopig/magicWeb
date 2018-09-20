@@ -35,7 +35,7 @@ module.exports = merge(webpackBaseConfig, {
             minChunks: Infinity
         }),
         new HtmlWebpackPlugin({
-            title: 'iView admin v' + package.version,
+            title: '金融知识智能平台',
             template: './index.html',
             inject: true
         }),

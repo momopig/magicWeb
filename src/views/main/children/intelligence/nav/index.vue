@@ -10,6 +10,9 @@
 <script>
     export default {
         components: {
+        },
+        mounted() {
+            let test = 'ewe'
         }
     };
 </script>

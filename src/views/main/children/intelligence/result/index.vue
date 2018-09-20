@@ -52,6 +52,17 @@
                         </div>
                     </div>
                 </div>
+                <div class="card ">
+                    <div class="label">延伸阅读：</div>
+                    <div class="value links">
+                        <div>
+                            <router-link class="link-item" to="/intelligence/result?keyWord=授信集中度">授信集中度</router-link>
+                            <router-link class="link-item" to="/intelligence/result?keyWord=关联客户">关联客户</router-link>
+                            <router-link class="link-item" to="/intelligence/result?keyWord=实际控制人">实际控制人</router-link>
+                            <router-link class="link-item"to="/intelligence/result?keyWord=股权关系">股权关系</router-link>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>   
     </div>
@@ -104,6 +115,21 @@
         },
         mounted() {
             this.getSearchData()
+        },
+        computed: {
+            getFullPath () {
+            return this.$route.path
+            }
+        },
+        route: {
+            canReuse: false
+        },
+        watch: {
+            '$route.query.keyWord': function(keyWord) {
+                this.query.keyWord = keyWord
+                this.getSearchData()
+            }
+ 
         },
         methods:{
             getSearchData: function(){
@@ -250,6 +276,14 @@
                     .search-details {
                         color: #E25555;
                         cursor: pointer;
+                    }
+                    &.links {
+                        height: 46px;
+                        .link-item {
+                          font-size: 14px;
+                          color: #D24545;
+                          text-decoration: underline;  
+                        }
                     }
                 }
             }

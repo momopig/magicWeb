@@ -5,10 +5,13 @@
             <tr>
                 <th v-for="(thItem, index) in options.headers">{{ thItem.label }}</th>
             </tr>
-            <tr v-for="(tdItem) in options.rows">
+            <tr v-for="(tdItem, trIndex) in options.rows" @click="toResult(tdItem)">
                 <td v-for="(thItem, index) in options.headers">
                     <div v-if="thItem.name === 'heat'">
                         <span v-for="i in tdItem[thItem.name]"><span class="redstar iconfont icon-recommend"></span></span>
+                    </div>
+                    <div v-else-if="thItem.name === 'id'">
+                        {{ trIndex + 1 }}
                     </div>
                     <div v-else> {{ tdItem[thItem.name] }}</div>
                 </td>
@@ -28,6 +31,14 @@
                         datas: []
                     }
                 }
+            }
+        },
+        methods: {
+            toResult: function(tdItem) {
+                this.$router.push({
+                    name: 'result',
+                    query: {keyWord: tdItem.keyWord}
+                })
             }
         },
         data() {

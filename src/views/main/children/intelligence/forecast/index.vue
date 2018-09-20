@@ -1,6 +1,6 @@
 <template>
     <div class="forecast-page">
-         <breadcrumb />
+        <breadcrumb />
         <div class="main-content">
             <div class="description">
                 以流动性风险管理新规为例，2018年5月25日，商业银行流动性风险管理办法正式亮相，并自2018年7月1日起施行。
@@ -21,9 +21,10 @@
 <script>
     import breadcrumb from '@/views/main/components/breadcrumb/index.vue'
     import LineChart from './components/lineChart/index.vue'
-    import intelligenceService from '@/utils/fetchService/intelligence.js' 
+    import intelligenceService from '@/utils/fetchService/intelligence.js'
+    import 'babel-polyfill'
     import Promise from 'es6-promise'
-
+    Promise.polyfill()
     export default {
         props: {
 
