@@ -3,16 +3,16 @@
  */
 import { makeUrlString, get, drop, post } from './common.js'
 let getHotList = function (query, successConfig, failConfig) {
-    let url = makeUrlString('/mock/api/query/hotspot', {offset: query.offset, count: query.count})
-    get(url, successConfig, failConfig)
+    let url = makeUrlString('/bqd/api/query/hotspot', {offset: query.offset, count: query.count})
+    return get(url, successConfig, failConfig)
 };
 let getHistoryList = function (query, successConfig, failConfig) {
-    let url = makeUrlString('/mock/api/query/history', {offset: query.offset, count: query.count})
-    get(url, successConfig, failConfig)
+    let url = makeUrlString('/bqd/api/query/history', {offset: query.offset, count: query.count})
+    return get(url, successConfig, failConfig)
 }
 let getPrediction = function (query, successConfig, failConfig) {
-    let url = makeUrlString('/mock/api/query/prediction', {type: query.type})
-    get(url, successConfig, failConfig)
+    let url = makeUrlString('/bqd/api/query/prediction', {type: query.type})
+    return get(url, successConfig, failConfig)
 }
 export default {
     getHotList,

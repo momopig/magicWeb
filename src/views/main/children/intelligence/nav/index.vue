@@ -3,7 +3,7 @@
         <div class="entry-box">
            <p class="entry-box-title">请选择功能模块</p>
            <a href="/#/intelligence/search"><div class="entry-box-item">金融知识检索</div></a>
-           <a href="javascript: void(0);"><div class="entry-box-item disabled">监管预测预警</div></a>
+           <a href="/#/intelligence/forecast"><div class="entry-box-item disabled">监管预测预警</div></a>
         </div>
     </div>
 </template>

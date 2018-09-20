@@ -54,7 +54,7 @@ export const locking = {
 export const otherRouter = {
     path: '/',
     name: 'otherRouter',
-    redirect: '/home',
+    redirect: '/intelligence/nav',
     component: Main,
     children: [
         { path: 'home', title: {i18n: 'home'}, name: 'home_index', component: () => import('@/views/home/home.vue') },

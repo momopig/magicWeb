@@ -50,15 +50,14 @@
         },
         created() {
             intelligenceService.getHistoryList(this.query, {
-                callback: (a) => {
-
-                    this.historyOptions.rows = a.historyData
+                callback: (data) => {
+                    this.historyOptions.rows = data.datas
                     this.historyOptions.show = true
                 }
             });
             intelligenceService.getHotList(this.query, {
                 callback: (data) => {        
-                    this.hotpointOptions.rows = data.hotData
+                    this.hotpointOptions.rows = data.datas
                     this.hotpointOptions.show = true
                 }
             })
