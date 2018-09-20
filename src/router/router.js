@@ -5,6 +5,7 @@ import Main from '@/views/main/index.vue';
 export const loginRouter = {
     path: '/login',
     name: 'login',
+    // redirect: '/intelligence/nav',
     meta: {
         title: 'Login - 登录'
     },
@@ -87,6 +88,7 @@ export const appRouter = [
         children: [
             { path: 'nav', title: '导航页', name: 'nav', component: () => import('@/views/main/children/intelligence/nav/index.vue') },
             { path: 'search', title: '搜索页', name: 'search', component: () => import('@/views/main/children/intelligence/search/index.vue') },
+            { path: 'result', title: '结果页', name: 'result', component: () => import('@/views/main/children/intelligence/result/index.vue') },
             { path: 'detail', title: '详情页', name: 'detail', component: () => import('@/views/main/children/intelligence/detail/index.vue') },
             { path: 'forecast', title: '预测页', name: 'forecast', component: () => import('@/views/main/children/intelligence/forecast/index.vue') },
         ]
