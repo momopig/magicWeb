@@ -14,9 +14,14 @@ let getPrediction = function (query, successConfig, failConfig) {
     let url = makeUrlString('/mock/api/query/prediction', {type: query.type})
     get(url, successConfig, failConfig)
 }
+let getSearchData = function (query, successConfig, failConfig) {
+    let url = makeUrlString('/bqd/api/query/knowledge', {keyWord:query.keyWord, dataType:query.dataType, offset:query.offset, count: query.count})
+    get(url, successConfig, failConfig)
+}
 export default {
     getHotList,
     getHistoryList,
-    getPrediction
+    getPrediction,
+    getSearchData
 }
   
