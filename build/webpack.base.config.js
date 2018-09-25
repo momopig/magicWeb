@@ -3,6 +3,7 @@ const os = require('os');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const HappyPack = require('happypack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 var happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 function resolve (dir) {
     return path.join(__dirname, dir);
@@ -21,7 +22,7 @@ module.exports = {
         }
     },
     output: {
-        path: path.resolve(__dirname, '../static')
+        path: path.resolve(__dirname, '../dist/static')
     },
     module: {
         rules: [

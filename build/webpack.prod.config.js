@@ -9,7 +9,6 @@ const webpackBaseConfig = require('./webpack.base.config.js');
 const os = require('os');
 const fs = require('fs');
 const path = require('path');
-const package = require('../package.json');
 
 fs.open('./build/env.js', 'w', function(err, fd) {
     // const buf = 'export default "production";';
@@ -21,16 +20,16 @@ fs.open('./build/env.js', 'w', function(err, fd) {
 
 module.exports = merge(webpackBaseConfig, {
     output: {
-        publicPath: '/static/',  // 修改 https://iv...admin 这部分为你的服务器域名 
-        filename: '[name].js',
-        chunkFilename: '[name].chunk.js'
+        publicPath: '/static/',  // 不能写为/static，否则文件名称连接在一起
+        filename: '[name].[hash].js',
+        chunkFilename: '[name].[hash].chunk.js'
     },
     plugins: [
-        new cleanWebpackPlugin(['dist/*'], {
+        new cleanWebpackPlugin(['static/*'], {
             root: path.resolve(__dirname, '../')
         }),
         new ExtractTextPlugin({
-            filename: '[name].css',
+            filename: '[name].[hash].css',
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
@@ -80,7 +79,7 @@ module.exports = merge(webpackBaseConfig, {
         new HtmlWebpackPlugin({
             title: '金融知识智能平台',
             favicon: './td_icon.ico',
-            filename: '../index.html',
+            filename: '../index.html', // relative to publicPath
             template: '!!ejs-loader!./src/template/index.ejs',
             inject: false
         })

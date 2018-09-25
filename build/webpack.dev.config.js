@@ -21,13 +21,10 @@ module.exports = merge(webpackBaseConfig, {
         // publicPath: '/static/',
         filename: '[name].js',
         chunkFilename: '[name].chunk.js'
-        // filename: '[name].[hash].js',
-        // chunkFilename: '[name].[hash].chunk.js'
     },
     plugins: [
         new ExtractTextPlugin({
             filename: '[name].css',
-            // filename: '[name].[hash].css',
             allChunks: true
         }),
         new webpack.optimize.CommonsChunkPlugin({
