@@ -1,7 +1,7 @@
 
 <template>
     <div class="common-header">
-        <a href="/#/intelligence"><img :src="imgUrl" class="systemlogo"></a>
+        <a href="/#/intelligence/nav"><img :src="imgUrl" class="systemlogo"></a>
     </div>
 </template>
 <style lang="less">
