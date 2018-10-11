@@ -13,6 +13,6 @@ app.use(apiProxy) // api子目录下的都是用代理
 //})
 //
 
-app.use(express.static(__dirname))
+app.use(express.static(__dirname + '/dist'))
 
 app.listen(8081)
