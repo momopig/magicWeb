@@ -19,6 +19,8 @@
                         <div v-if="index < 3" class="value-item" v-for="(item, index) in searchValues.law.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
+                            <div class="source" v-html="emphasizeKey(item.source, query.keyWord)"></div>
+                            <div class="more">查看更多......</div>
                         </div>
                     </div>
                 </div>
@@ -28,7 +30,10 @@
                         <div  v-if="index < 3" class="value-item" v-for="(item, index) in searchValues.rule.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="3 <= index + 1"><a class="search-details"><...查看详情></a></div>
+                            <div class="source" v-html="emphasizeKey(item.source, query.keyWord)"></div>
+                            <div v-if="3 <= index + 1"><a class="search-details"><...详情></a></div>
+                                                        <div class="more">查看更多......</div>
+
                         </div>                        
                     </div>
                 </div>
@@ -38,7 +43,10 @@
                         <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.business.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
                             <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="1 < searchValues.business.data.datas.length"><a class="search-details"><...查看详情></a></div>
+                            <div class="source" v-html="emphasizeKey(item.source, query.keyWord)"></div>
+                            
+                                                        <div class="more">查看更多......</div>
+
                         </div>                        
                     </div>
                 </div>
@@ -47,8 +55,11 @@
                     <div class="value">
                         <div  v-if="index < 1" class="value-item" v-for="(item, index) in searchValues.risk.data.datas">
                             <div class="title" v-html="index + 1 + '. ' + emphasizeKey(item.title, query.keyWord)"></div>
-                            <div class="content" v-html="emphasizeKey(item.content, query.keyWord)"></div>
-                            <div v-if="1 < searchValues.risk.data.datas.length"><a :href="'/#/intelligence/detail?type=risk&keyWord=' + query.keyWord" class="search-details"><...查看详情></a></div>
+                            <span class="content" v-html="emphasizeKey(item.content, query.keyWord)"></span>
+                            <span class="source" v-html="emphasizeKey(item.source, query.keyWord)"></span>
+                            <span v-if="1 < searchValues.risk.data.datas.length"><a :href="'/#/intelligence/detail?type=risk&keyWord=' + query.keyWord" class="search-details"><...详情></a></span>
+                                                    <div class="more">查看更多......</div>
+
                         </div>
                     </div>
                 </div>
@@ -147,6 +158,9 @@
                 })
             },
             emphasizeKey(string, key) {
+                if (!string) {
+                    return
+                }
                 var reg = new RegExp(key, "g");
                 return string.replace(reg, '<span class="strong">' + key + '</span>')
             }
@@ -257,6 +271,7 @@
                     color: #333333;
                 }
                 >.value {
+                    position: relative;
                     box-sizing: border-box;
                     width: 100%;
                     height: 86px;
@@ -274,7 +289,7 @@
                         color: #E25555
                     }
                     .search-details {
-                        color: #E25555;
+                        color: blue;
                         cursor: pointer;
                     }
                     &.links {
@@ -284,6 +299,18 @@
                           color: #D24545;
                           text-decoration: underline;  
                         }
+                    }
+                    .source {
+                        color: #E89C7e;
+                        font-style: italic;
+                    
+                    }
+                    .more {
+                        position: absolute;
+                        bottom: 2px;
+                        right: 10px;
+                        text-align: right;
+                        cursor: pointer;
                     }
                 }
             }

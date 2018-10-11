@@ -25,7 +25,9 @@ module.exports = merge(webpackBaseConfig, {
         chunkFilename: '[name].[hash].chunk.js'
     },
     plugins: [
-        new cleanWebpackPlugin(['static/*'], {
+
+        // 清空dist目录
+        new cleanWebpackPlugin(['dist'], {
             root: path.resolve(__dirname, '../')
         }),
         new ExtractTextPlugin({
